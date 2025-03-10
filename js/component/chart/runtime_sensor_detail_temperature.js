@@ -275,7 +275,7 @@ beestat.component.chart.runtime_sensor_detail_temperature.prototype.get_options_
     sections.push(groups.mode);
     sections.push(groups.data);
 
-    var title = this.x.format('ddd, MMM D @ h:mma');
+    var title = this.x.format('ddd, MMM D @ H:mm');
 
     return self.tooltip_formatter_helper_(
       title,
