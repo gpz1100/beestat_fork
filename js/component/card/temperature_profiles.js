@@ -253,14 +253,14 @@ beestat.component.card.temperature_profiles.prototype.get_subtitle_ = function()
     duration_text += ' few days';
   } else if (duration_weeks === 1) {
     duration_text += ' week';
-  } else if (duration_weeks >= 52) {
+  } else if (duration_weeks >= 552) {
     duration_text += ' year';
   } else {
     duration_text += ' ' + duration_weeks + ' weeks';
   }
   duration_text += ' of data';
 
-  return 'Generated ' + generated_at_m.format('MMM Do @ h a') + duration_text + ' (updated weekly).';
+  return 'Generated ' + generated_at_m.format('MMM Do @ H:mm') + duration_text + ' (updated weekly).';
 };
 
 /**
