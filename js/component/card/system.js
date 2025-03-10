@@ -74,7 +74,7 @@ beestat.component.card.system.prototype.decorate_circle_ = function(parent) {
     .style({
       'font-size': '24px'
     })
-    .innerHTML('.' + temperature_fractional);
+    .innerHTML('.' + temperature_fractional + beestat.setting('units.temperature'));
   temperature_container.appendChild(temperature_fractional_container);
 
   var humidity_container = $.createElement('div')
@@ -140,7 +140,7 @@ beestat.component.card.system.prototype.decorate_weather_ = function(parent) {
     })
     .innerHTML(beestat.temperature({
       'round': 0,
-      'units': false,
+      'units': true,
       'temperature': thermostat.weather.temperature
     }));
   temperature_container.appendChild(temperature_whole_container);
@@ -411,7 +411,7 @@ beestat.component.card.system.prototype.decorate_time_to_temperature_ = function
         text += ' (' +
           moment()
             .add(hours_to_go, 'hour')
-            .format('h:mm a') +
+            .format('H:mm') +
           ')';
       }
     }
@@ -541,11 +541,11 @@ beestat.component.card.system.prototype.get_subtitle_ = function() {
     ecobee_thermostat.settings.hvacMode === 'heat' ||
     ecobee_thermostat.settings.hvacMode === 'auxHeatOnly'
   ) {
-    subtitle += ' • ' + heat;
+    subtitle += ' • ' + heat + '\u00B0F';
   } else if (
     ecobee_thermostat.settings.hvacMode === 'cool'
   ) {
-    subtitle += ' • ' + cool;
+    subtitle += ' • ' + cool + '\u00B0F';
   }
 
   const last_synced_on_m =
@@ -557,16 +557,16 @@ beestat.component.card.system.prototype.get_subtitle_ = function() {
   // Include the date if the sync gets more than 3 hours behind.
   let format;
   if (moment().diff(data_as_of_m, 'minutes') > 180) {
-    format = 'MMM Do [at] h:mm a';
+    format = 'MMM Do [at] H:mm';
   } else {
-    format = 'h:mm a';
+    format = 'MMM Do [at] HH:mm ';
   }
 
   subtitle +=
     '<br/><span title="Last sync: ' +
     last_synced_on_m.format(format) +
     '" style="color: ' +
-    beestat.style.color.gray.dark +
+    beestat.style.color.gray +
     '">As of ' +
     data_as_of_m.format(format) +
     '</span>';
