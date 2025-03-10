@@ -409,7 +409,7 @@ beestat.component.chart.runtime_thermostat_detail_temperature.prototype.get_opti
 
     sections.push(groups.off);
 
-    var title = this.x.format('ddd, MMM D @ h:mma');
+    var title = this.x.format('ddd, MMM D @ H:mm');
 
     return self.tooltip_formatter_helper_(
       title,
