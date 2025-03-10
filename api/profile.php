@@ -164,10 +164,10 @@ class profile extends cora\crud {
     if($custom_range_begin !== null) {
       $begin_timestamp = max(
         strtotime($custom_range_begin),
-        strtotime('-3 year', $end_timestamp)
+        strtotime('-4 year', $end_timestamp)
       );
     } else {
-      $begin_timestamp = strtotime('-3 year', $end_timestamp);
+      $begin_timestamp = strtotime('-4 year', $end_timestamp);
     }
 
     // Round to 5 minute intervals.
